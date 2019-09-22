@@ -1,0 +1,16 @@
+---
+- name: check httpd process status.
+  command: systemctl status httpd
+  ignore_errors: true
+  changed_when: false
+  register: httpd_status
+
+- name: apache graceful.
+  command: apachectl graceful
+  when: httpd_status.rc == 0
+
+- name: apache restart.
+  systemd:
+    name: httpd
+    state: restarted
+  when: httpd_status.rc != 0

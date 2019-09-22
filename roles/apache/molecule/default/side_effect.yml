@@ -1,0 +1,22 @@
+---
+- name: Side Effect
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: check example1 site.
+      uri:
+        url: "http://{{ ansible_facts.all_ipv4_addresses.0 }}"
+        headers:
+          Host: www.example1.com
+        return_content: yes
+      register: example1_result
+      delegate_to: localhost
+      tags:
+        - always
+
+    - assert:
+        that:
+          - example1_result.status == 200
+          - example1_result.content is search("example1")
+      tags:
+        - always

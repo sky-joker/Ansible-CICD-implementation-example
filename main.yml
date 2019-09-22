@@ -1,0 +1,7 @@
+---
+- name: web server playbook
+  hosts: all
+  gather_facts: false
+  roles:
+    - role: apache
+      tags: ['never', 'apache']

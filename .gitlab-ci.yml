@@ -1,0 +1,25 @@
+---
+stages:
+  - playbook test
+  - molecule test
+  - deploy
+
+before_script:
+  - source ~/venv/bin/activate
+
+main playbook test:
+  stage: playbook test
+  script:
+    - yamllint main.yml
+    - ansible-lint -x 303 main.yml
+
+apache molecule test:
+  stage: molecule test
+  script:
+    - cd roles/apache
+    - sudo molecule test
+
+apache deploy:
+  stage: deploy
+  script:
+    - tower-cli workflow_job launch -W 'webserver workflow' -h 192.168.0.64 -u sky-joker -p $ansible_tower_passwd

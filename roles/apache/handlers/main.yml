@@ -1,0 +1,3 @@
+---
+- name: copy_httpd_config
+  include_tasks: httpd_process_restart.yml

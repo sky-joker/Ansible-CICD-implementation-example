@@ -1,0 +1,11 @@
+---
+- name: copy httpd config.
+  copy:
+    src: httpd/
+    dest: /etc/httpd
+  notify: copy_httpd_config
+
+- name: copy httpd contents.
+  copy:
+    src: web_content/
+    dest: /var/www/html
