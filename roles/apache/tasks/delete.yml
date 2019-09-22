@@ -1,5 +1,5 @@
 ---
-- name: apahce install.
+- name: apahce delete.
   yum:
     name: "{{ package }}"
     state: absent
