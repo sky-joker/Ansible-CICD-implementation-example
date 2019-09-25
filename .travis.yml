@@ -1,0 +1,17 @@
+language: python
+services:
+  - docker
+
+dist: xenial
+
+before_install:
+  - sudo pip install ansible docker-compose molecule
+
+jobs:
+  include:
+    - stage: role test
+      name: apache role test
+      python: 3.6
+      script:
+        - cd roles/apache
+        - molecule test
