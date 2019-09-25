@@ -1,12 +1,9 @@
 ---
-- import_tasks: install.yml
-  when: ansible_run_tags | select('match', 'install') | list | length == 1
-  tags: always
+- include_tasks: install.yml
+  tags: install
 
-- import_tasks: config_update.yml
-  when: ansible_run_tags | select('match', 'config_update') | list | length == 1
-  tags: always
+- include_tasks: config_update.yml
+  tags: config_update
 
-- import_tasks: delete.yml
-  when: ansible_run_tags | select('match', 'delete') | list | length == 1
-  tags: always
+- include_tasks: delete.yml
+  tags: delete

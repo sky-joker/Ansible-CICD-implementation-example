@@ -2,6 +2,7 @@
 - name: web server playbook
   hosts: all
   gather_facts: false
-  roles:
-    - role: apache
+  tasks:
+    - include_role:
+        name: apache
       tags: ['never', 'apache']

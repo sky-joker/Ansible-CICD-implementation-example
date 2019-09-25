@@ -3,3 +3,4 @@
   yum:
     name: "{{ package }}"
     state: absent
+  tags: always

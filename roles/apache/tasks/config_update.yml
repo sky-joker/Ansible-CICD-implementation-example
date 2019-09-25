@@ -4,8 +4,10 @@
     src: httpd/
     dest: /etc/httpd
   notify: copy_httpd_config
+  tags: always
 
 - name: copy httpd contents.
   copy:
     src: web_content/
     dest: /var/www/html
+  tags: always

@@ -16,7 +16,7 @@ platforms:
 provisioner:
   name: ansible
   options:
-    tags: install,config_update
+    tags: apache,install,config_update
   playbooks:
     side_effect: side_effect.yml
   lint:
